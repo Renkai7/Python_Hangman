@@ -1,16 +1,34 @@
-#Step 1 
+#Step 3
+
 import random
 word_list = ["aardvark", "baboon", "camel"]
-
-#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
 chosen_word = random.choice(word_list)
-print(chosen_word)
-#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
-guess = input("Guess a letter: ").lower()
+word_length = len(chosen_word)
 
-#TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
-for letter in chosen_word:
-  if guess == letter:
-    print("That letter is in the word!")
-  else:
-    print("Letter is not in the word.")
+#Testing code
+print(f'Pssst, the solution is {chosen_word}.')
+
+#Create blanks
+end_of_game = False
+display = []
+for _ in range(word_length):
+    display += "_"
+
+#TODO-1: - Use a while loop to let the user guess again. The loop should only stop once the user has guessed all the letters in the chosen_word and 'display' has no more blanks ("_"). Then you can tell the user they've won.
+while not end_of_game:
+  guess = input("Guess a letter: ").lower()
+
+#Check guessed letter
+  
+  for position in range(word_length):
+      letter = chosen_word[position]
+      print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
+      if letter == guess:
+          display[position] = letter
+
+  if "_" not in display:
+    end_of_game = True
+    print("You've won!") 
+    
+  print(display)
+ 
